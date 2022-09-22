@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 /// Proxy which will be used to fetch page sources in the [SourceType.urlBypass] mode.
 abstract class BypassProxy {
   const BypassProxy();
+
   /// Builds the proxied url
   String buildProxyUrl(String pageUrl);
 

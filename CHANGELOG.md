@@ -1,4 +1,8 @@
+## 0.3.1+2 - Fixed static analysis issue
+Formating issue
+
 ## 0.3.1+1 - Fixed static analysis issues
+* minor issue resolved
 
 ## 0.3.1 - Updated Code
 
