@@ -1,3 +1,5 @@
+## 0.3.1+1 - Fixed static analysis issues
+
 ## 0.3.1 - Updated Code
 
 The updates are:
