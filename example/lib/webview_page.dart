@@ -37,7 +37,7 @@ class _WebViewXPageState extends State<WebViewXPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WebViewX Page'),
+        title: const Text('WebViewX_Plus Page'),
       ),
       body: Center(
         child: Container(

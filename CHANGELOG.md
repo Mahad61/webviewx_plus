@@ -1,18 +1,30 @@
-## 0.3.1+3 - Readme
-Readme updates
+﻿##  0.3.2
 
-## 0.3.1+2 - Fixed static analysis issue
-Formating issue
+-  All minor issues fixed
 
-## 0.3.1+1 - Fixed static analysis issues
-* minor issue resolved
+##  0.3.1+3
 
-## 0.3.1 - Updated Code
+-  Readme updates
+
+## 0.3.1+2
+
+-  Formating issue
+
+## 0.3.1+1
+-  Fixed static analysis issues
+
+## 0.3.1
+
+**Updated Code**
 
 The updates are:
 * Up-to-date dependencies
+
 * Authorize a custom BypassProxy class to override how a page reference is fetched
+
 * Set sourceType to url by default
+
 * Console log issue fixed
+
 * callJsMethod bug fixed
 

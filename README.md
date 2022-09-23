@@ -48,8 +48,8 @@ A feature-rich cross-platform webview using [webview_flutter](https://pub.dev/pa
                     <img src="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/chrome.gif" width="200"/>
                 </a>
             <td style="text-align: center">
-                <a href="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/safari.gif">
-                    <img src="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/safari.gif" width="200"/>
+                <a href="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/safari.gif">
+                    <img src="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/safari.gif" width="200"/>
                 </a>
             </td>
         </tr>
