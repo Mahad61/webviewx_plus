@@ -1,6 +1,6 @@
 ﻿
 <p align="center">
-<img src="https://github.com/Mahad61/webviewx_plus/blob/main/doc/images/webviewx_plus.png" height="400" alt="webviewx" />
+<img src="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/images/webviewx_plus.png" height="400" alt="webviewx" />
 </p>
 
 
@@ -29,13 +29,13 @@ A feature-rich cross-platform webview using [webview_flutter](https://pub.dev/pa
                 <p> Mobile</p>
             </td>
             <td style="text-align: center">
-                <a href="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/android.gif">
-                    <img src="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/android.gif" width="200"/>
+                <a href="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/iphone.gif">
+                    <img src="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/iphone.gif" width="200"/>
                 </a>
             </td>            
             <td style="text-align: center">
-                <a href="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/iphone.gif">
-                    <img src="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/iphone.gif" width="200"/>
+                <a href="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/android.gif">
+                    <img src="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/android.gif" width="200"/>
                 </a>
             </td>
         </tr>
@@ -44,8 +44,8 @@ A feature-rich cross-platform webview using [webview_flutter](https://pub.dev/pa
                 <p> Web</p>
             </td>
             <td style="text-align: center">
-                <a href="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/chrome.gif">
-                    <img src="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/chrome.gif" width="200"/>
+                <a href="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/chrome.gif">
+                    <img src="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/gif/chrome.gif" width="200"/>
                 </a>
             <td style="text-align: center">
                 <a href="https://github.com/Mahad61/webviewx_plus/blob/main/doc/gif/safari.gif">
