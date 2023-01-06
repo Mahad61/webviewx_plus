@@ -352,7 +352,7 @@ class _WebViewXState extends State<WebViewX> {
       ..height = widget.height.toInt().toString()
       ..style.width = "100%"
       ..style.height = "100%"
-      ..allowFullscreen = widget.webSpecificParams.webAllowFirescreenContent;
+      ..allowFullscreen = widget.webSpecificParams.webAllowFullscreenContent;
 
     widget.webSpecificParams.additionalSandboxOptions.forEach(
       iframeElement.sandbox!.add,

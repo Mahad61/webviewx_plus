@@ -21,13 +21,13 @@ class WebSpecificParams {
   /// navigate, what iFrames have started or finished loading etc.
   final bool printDebugInfo;
 
-  /// Controls video behavior. If true, videos will have the firescreen button active.
-  final bool webAllowFirescreenContent;
+  /// Controls video behavior. If true, videos will have the fullscreen button active.
+  final bool webAllowFullscreenContent;
 
-  /// IFrame sandbox options. You shouldn't modify theses unless something doesn't work
+  /// IFrame sandbox options. You shouldn't modify these unless something doesn't work
   final List<String> additionalSandboxOptions;
 
-  /// IFrame "allow" options. You shouldn't modify theses unless something doesn't work
+  /// IFrame "allow" options. You shouldn't modify these unless something doesn't work
   final List<String> additionalAllowOptions;
 
   /// The loading indicator that shows up when the iFrame content is loading (only when using [SourceType.urlBypass])
@@ -38,7 +38,7 @@ class WebSpecificParams {
     List<BypassProxy> proxyList = BypassProxy.publicProxies,
     this.applyProxyLoadBalancing = true,
     this.printDebugInfo = false,
-    this.webAllowFirescreenContent = true,
+    this.webAllowFullscreenContent = true,
     this.additionalSandboxOptions = const [
       'allow-downloads',
       'allow-forms',
