@@ -1,4 +1,8 @@
-﻿##  0.3.2
+﻿## 0.3.3
+
+-  Updated dependency `webview_flutter` to `^4.0.0`
+
+##  0.3.2
 
 -  All minor issues fixed
 
@@ -27,4 +31,3 @@ The updates are:
 * Console log issue fixed
 
 * callJsMethod bug fixed
-
