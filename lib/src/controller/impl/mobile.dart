@@ -119,23 +119,27 @@ class WebViewXController extends ChangeNotifier
   ) async {
     // This basically will transform a "raw" call (evaluateJavascript)
     // into a little bit more "typed" call, that is - calling a method.
-    final result = await connector.runJavascriptReturningResult(
+    final result = await connector.runJavaScriptReturningResult(
       HtmlUtils.buildJsFunction(name, params),
     );
 
-    // (MOBILE ONLY) Unquotes response if necessary
-    //
-    // The web works fine because it is already into its native environment
-    // but on mobile we need to parse the result
-    if (Platform.isAndroid) {
-      // On Android `result` will be JSON, so we decode it
-      return json.decode(result);
-    } else {
-      /// TODO: make sure this works on iOS
-      // In the iOS version responses from JS to Dart come wrapped in single quotes (')
-      // Note that the supported types are more limited because of connector.evaluateJavascript
-      return HtmlUtils.unQuoteJsResponseIfNeeded(result);
+    if (result is String) {
+      // (MOBILE ONLY) Unquotes response if necessary
+      //
+      // The web works fine because it is already into its native environment
+      // but on mobile we need to parse the result
+      if (Platform.isAndroid) {
+        // On Android `result` will be JSON, so we decode it
+        return json.decode(result);
+      } else {
+        /// TODO: make sure this works on iOS
+        // In the iOS version responses from JS to Dart come wrapped in single quotes (')
+        // Note that the supported types are more limited because of connector.evaluateJavascript
+        return HtmlUtils.unQuoteJsResponseIfNeeded(result);
+      }
     }
+
+    return result;
   }
 
   /// This function allows you to evaluate 'raw' javascript (e.g: 2+2)
@@ -150,7 +154,7 @@ class WebViewXController extends ChangeNotifier
     String rawJavascript, {
     bool inGlobalContext = false, // NO-OP HERE
   }) {
-    return connector.runJavascriptReturningResult(rawJavascript);
+    return connector.runJavaScriptReturningResult(rawJavascript);
   }
 
   /// Returns the current content
@@ -209,16 +213,24 @@ class WebViewXController extends ChangeNotifier
     return connector.reload();
   }
 
+  /// Get scroll position
+  @override
+  Future<Offset> getScrollPosition() {
+    return connector.getScrollPosition();
+  }
+
   /// Get scroll position on X axis
+  @Deprecated("Use getScrollPosition instead")
   @override
   Future<int> getScrollX() {
-    return connector.getScrollX();
+    return getScrollPosition().then((value) => value.dx.toInt());
   }
 
   /// Get scroll position on Y axis
+  @Deprecated("Use getScrollPosition instead")
   @override
   Future<int> getScrollY() {
-    return connector.getScrollY();
+    return getScrollPosition().then((value) => value.dy.toInt());
   }
 
   /// Scrolls by `x` on X axis and by `y` on Y axis

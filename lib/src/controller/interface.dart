@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:webviewx_plus/src/utils/source_type.dart';
 import 'package:webviewx_plus/src/utils/webview_content_model.dart';
 
@@ -97,6 +99,9 @@ abstract class WebViewXController<T> {
 
   /// Reload the current content.
   Future<void> reload();
+
+  /// Get scroll position
+  Future<Offset> getScrollPosition();
 
   /// Get scroll position on X axis
   Future<int> getScrollX();
