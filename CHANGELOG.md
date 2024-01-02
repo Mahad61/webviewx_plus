@@ -1,4 +1,9 @@
-﻿## 0.3.3
+﻿## 0.4.0
+
+-  Updated dependencies
+
+
+## 0.3.3
 
 -  Updated dependency `webview_flutter` to `^4.0.0`
 

@@ -1,28 +1,62 @@
 name: webviewx_plus_example
 description: A new Flutter project.
 
-publish_to: "none"
+publish_to: 'none' 
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=3.2.3 <4.0.0'
 
 dependencies:
-  cupertino_icons: ^1.0.3
   flutter:
     sdk: flutter
 
+  cupertino_icons: ^1.0.2
+  
   webviewx_plus:
     path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^1.5.3
+
+  flutter_lints: ^2.0.0
+  
+dependency_overrides:
+  web: ^0.3.0
+
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
