@@ -436,6 +436,10 @@ class _WebViewXState extends State<WebViewX> {
           return;
         }
 
+        iframeViewType = _createViewType();
+        iframe = _createIFrame();
+        _registerView(iframeViewType);
+
         if (model.sourceType == SourceType.url) {
           iframe.src = source;
         } else {
@@ -445,6 +449,8 @@ class _WebViewXState extends State<WebViewX> {
             headers: model.headers,
           );
         }
+
+        if (mounted) setState(() {});
         break;
     }
   }
