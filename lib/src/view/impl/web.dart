@@ -7,7 +7,6 @@ import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
-
 import 'package:webviewx_plus/src/controller/impl/web.dart';
 import 'package:webviewx_plus/src/controller/interface.dart' as ctrl_interface;
 import 'package:webviewx_plus/src/utils/constants.dart';
@@ -145,14 +144,12 @@ class _WebViewXState extends State<WebViewX> {
 
   late WebViewXController webViewXController;
 
-  late bool _didLoadInitialContent;
   late bool _ignoreAllGestures;
 
   @override
   void initState() {
     super.initState();
 
-    _didLoadInitialContent = false;
     _ignoreAllGestures = widget.ignoreAllGestures;
 
     iframeViewType = _createViewType();
@@ -180,9 +177,8 @@ class _WebViewXState extends State<WebViewX> {
   }
 
   void _registerView(String viewType) {
-    ui.platformViewRegistry.registerViewFactory(viewType, (int viewId) {
-      return iframe;
-    });
+    ui.platformViewRegistry
+        .registerViewFactory(viewType, (int viewId) => iframe);
   }
 
   WebViewXController _createWebViewXController() {
@@ -274,15 +270,12 @@ class _WebViewXState extends State<WebViewX> {
   }
 
   void _registerIframeOnLoadCallback() {
-    iframeOnLoadSubscription = iframe.onLoad.listen((event) {
-      _debugLog('IFrame $iframeViewType has been (re)loaded.');
+    _callOnPageStartedCallback(webViewXController.value.source);
 
-      if (!_didLoadInitialContent) {
-        _didLoadInitialContent = true;
-        _callOnPageStartedCallback(webViewXController.value.source);
-      } else {
-        _callOnPageFinishedCallback(webViewXController.value.source);
-      }
+    iframeOnLoadSubscription = iframe.onLoad.listen((event) {
+      _debugLog('IFrame $iframeViewType has been loaded.');
+
+      _callOnPageFinishedCallback(webViewXController.value.source);
     });
   }
 
@@ -444,7 +437,7 @@ class _WebViewXState extends State<WebViewX> {
         }
 
         if (model.sourceType == SourceType.url) {
-          iframe.contentWindow!.location.href = source;
+          iframe.src = source;
         } else {
           _tryFetchRemoteSource(
             method: 'get',
