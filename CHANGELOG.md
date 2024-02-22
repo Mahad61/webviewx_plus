@@ -1,4 +1,14 @@
-﻿## 0.4.0
+﻿## 0.5.0
+
+-  Migrates to ui_web APIs.
+-  Set min sdk to 3.0.0.
+
+
+## 0.4.1
+
+-  Added Supported Platforms
+
+## 0.4.0
 
 -  Updated dependencies
 
