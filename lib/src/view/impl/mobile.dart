@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:js_interop';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -293,7 +294,9 @@ class _WebViewXState extends State<WebViewX> {
     for (final cb in widget.dartCallBacks) {
       originalWebViewController.addJavaScriptChannel(
         cb.name,
-        onMessageReceived: (msg) => cb.callBack(msg.message),
+        onMessageReceived: (msg) => cb.callBack(
+          msg.message.toExternalReference,
+        ),
       );
     }
 

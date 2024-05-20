@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
+import 'package:web/web.dart' as web;
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
 import 'package:flutter/material.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
@@ -137,10 +136,10 @@ class WebViewX extends StatefulWidget implements view_interface.WebViewX {
 }
 
 class _WebViewXState extends State<WebViewX> {
-  late html.IFrameElement iframe;
+  late web.HTMLIFrameElement iframe;
   late String iframeViewType;
   late StreamSubscription iframeOnLoadSubscription;
-  late js.JsObject jsWindowObject;
+  late JSObject jsWindowObject;
 
   late WebViewXController webViewXController;
 
@@ -198,75 +197,23 @@ class _WebViewXState extends State<WebViewX> {
   // Iframe viewType is used as a disambiguator.
   // Check function [embedWebIframeJsConnector] from [HtmlUtils] for details.
   void _connectJsToFlutter({VoidCallback? then}) {
-    js.context['$jsToDartConnectorFN$iframeViewType'] = (js.JsObject window) {
-      jsWindowObject = window;
-
-      /// Register dart callbacks one by one.
+    globalContext['$jsToDartConnectorFN$iframeViewType'] = (JSObject window) {
+      JSObject jsWindowObject = window;
       for (final cb in widget.dartCallBacks) {
-        jsWindowObject[cb.name] = cb.callBack;
+        jsWindowObject[cb.name] = cb.callBack.toJS;
       }
 
-      // Register history callback
-      jsWindowObject[webOnClickInsideIframeCallback] = (onClickCallbackObject) {
-        _handleOnIframeClick(onClickCallbackObject as String);
-      };
+      jsWindowObject.setProperty(
+        webOnClickInsideIframeCallback.toJS,
+        (String onClickCallbackObject) {
+          _handleOnIframeClick(onClickCallbackObject);
+        }.toJS,
+      );
 
       webViewXController.connector = jsWindowObject;
 
       then?.call();
-
-      /*
-      // Registering the same events as we already do inside
-      // HtmlUtils.embedClickListenersInPageSource(), but in Dart.
-      // So far it seems to be working, but needs more testing.
-
-      jsWindowObject.callMethod('addEventListener', [
-        "click",
-        js.allowInterop((event) {
-          final href = jsWindowObject["document"]["activeElement"]["href"].toString();
-          print(href);
-        })
-      ]);
-
-      jsWindowObject.callMethod('addEventListener', [
-        "submit",
-        js.allowInterop((event) {
-          final form = jsWindowObject["document"]["activeElement"]["form"];
-
-          final method = form["method"].toString();
-
-          if (method == 'get') {
-            final action = jsWindowObject.callMethod(
-              'eval',
-              [
-                "document.activeElement.form.action + '?' + new URLSearchParams(new FormData(document.activeElement.form))"
-              ],
-            ).toString();
-            print(action);
-          } else {
-            // post
-            final action = form["action"].toString();
-
-            final formData = jsWindowObject
-                .callMethod(
-                  'eval',
-                  ["[...new FormData(document.activeElement.form)]"],
-                )
-                .toString()
-                .split(',');
-
-            final mappedFields = <String, dynamic>{};
-            for (var i = 0; i < formData.length; i++) {
-              if (i % 2 != 0) {
-                mappedFields[formData[i - 1]] = formData[i];
-              }
-            }
-            print(mappedFields);
-          }
-        })
-      ]);
-      */
-    };
+    }.toJS;
   }
 
   void _registerIframeOnLoadCallback() {
@@ -336,8 +283,8 @@ class _WebViewXState extends State<WebViewX> {
     return HtmlUtils.buildIframeViewType();
   }
 
-  html.IFrameElement _createIFrame() {
-    final iframeElement = html.IFrameElement()
+  web.HTMLIFrameElement _createIFrame() {
+    final iframeElement = web.HTMLIFrameElement()
       ..id = 'id_$iframeViewType'
       ..name = 'name_$iframeViewType'
       ..style.border = 'none'
@@ -348,11 +295,11 @@ class _WebViewXState extends State<WebViewX> {
       ..allowFullscreen = widget.webSpecificParams.webAllowFullscreenContent;
 
     widget.webSpecificParams.additionalSandboxOptions.forEach(
-      iframeElement.sandbox!.add,
+      (element) => iframeElement.sandbox.add(element),
     );
 
     if (widget.javascriptMode == JavascriptMode.unrestricted) {
-      iframeElement.sandbox!.add('allow-scripts');
+      iframeElement.sandbox.add('allow-scripts');
     }
 
     final allow = widget.webSpecificParams.additionalAllowOptions;
