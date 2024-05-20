@@ -1,4 +1,8 @@
-﻿## 0.5.0
+﻿## 0.6.0
+- Migrate to "web" and "dart:js_interop" for WASM support
+- Set min sdk to 3.4.0.
+
+## 0.5.0
 
 -  Migrates to ui_web APIs.
 -  Set min sdk to 3.0.0.
