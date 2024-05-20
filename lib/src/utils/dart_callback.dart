@@ -42,7 +42,7 @@ class DartCallback {
   final String name;
 
   /// Callback function
-  final void Function(ExternalDartReference message) callBack;
+  final void Function(JSAny message) callBack;
 
   /// Constructor
   const DartCallback({

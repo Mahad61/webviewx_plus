@@ -295,7 +295,7 @@ class _WebViewXState extends State<WebViewX> {
       originalWebViewController.addJavaScriptChannel(
         cb.name,
         onMessageReceived: (msg) => cb.callBack(
-          msg.message.toExternalReference,
+          msg.message.toJS,
         ),
       );
     }
