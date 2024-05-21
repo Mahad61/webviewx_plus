@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:js_interop';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -295,7 +294,7 @@ class _WebViewXState extends State<WebViewX> {
       originalWebViewController.addJavaScriptChannel(
         cb.name,
         onMessageReceived: (msg) => cb.callBack(
-          msg.message.toJS,
+          msg.message,
         ),
       );
     }
