@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 /// Registers a Dart callback, which can be called from the Javascript side.
 /// This will be turned into a platform-specific dart callback, on runtime.
 ///
@@ -35,14 +33,14 @@ import 'dart:js_interop';
 /// ```
 /// For more about the Web and Mobile different call types see [EmbeddedJsContent]
 ///
-class DartCallback {
+class DartCallback<T> {
   /// Callback's name
   ///
   /// Note: Must be UNIQUE
   final String name;
 
   /// Callback function
-  final void Function(JSAny message) callBack;
+  final void Function(T message) callBack;
 
   /// Constructor
   const DartCallback({
