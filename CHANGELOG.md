@@ -1,5 +1,11 @@
-﻿## 0.6.0
-- Migrate to "web" and "dart:js_interop" for WASM support
+﻿
+## 0.5.1+1
+
+-  Fixed minor bug
+
+## 0.5.1
+
+-  Migrate to "web" and "dart:js_interop" for WASM support
 - Set min sdk to 3.4.0.
 
 ## 0.5.0
