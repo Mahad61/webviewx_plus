@@ -177,7 +177,7 @@ class _WebViewXState extends State<WebViewX> {
 
   void _registerView(String viewType) {
     ui.platformViewRegistry
-        .registerViewFactory(viewType, (int viewId) => iframe ?? emptyIframe);
+        .registerViewFactory(viewType, (int viewId) => iframe);
   }
 
   WebViewXController _createWebViewXController() {
@@ -219,7 +219,7 @@ class _WebViewXState extends State<WebViewX> {
   void _registerIframeOnLoadCallback() {
     _callOnPageStartedCallback(webViewXController.value.source);
 
-    iframeOnLoadSubscription = iframe!.onLoad.listen((event) {
+    iframeOnLoadSubscription = iframe.onLoad.listen((event) {
       _debugLog('IFrame $iframeViewType has been loaded.');
 
       _callOnPageFinishedCallback(webViewXController.value.source);
@@ -359,7 +359,7 @@ class _WebViewXState extends State<WebViewX> {
 
     switch (model.sourceType) {
       case SourceType.html:
-        iframe?.srcdoc = HtmlUtils.preprocessSource(
+        iframe.srcdoc = HtmlUtils.preprocessSource(
           source,
           jsContent: widget.jsContent,
           windowDisambiguator: iframeViewType,
@@ -369,7 +369,7 @@ class _WebViewXState extends State<WebViewX> {
       case SourceType.url:
       case SourceType.urlBypass:
         if (source == 'about:blank') {
-          iframe?.srcdoc = HtmlUtils.preprocessSource(
+          iframe.srcdoc = HtmlUtils.preprocessSource(
             '<br>',
             jsContent: widget.jsContent,
             windowDisambiguator: iframeViewType,
@@ -388,8 +388,7 @@ class _WebViewXState extends State<WebViewX> {
         _registerView(iframeViewType);
 
         if (model.sourceType == SourceType.url) {
-          iframe?.srcdoc = '';
-          iframe?.src = source;
+          iframe.src = source;
         } else {
           _tryFetchRemoteSource(
             method: 'get',
@@ -529,7 +528,7 @@ class _WebViewXState extends State<WebViewX> {
       pageSource,
     );
 
-    iframe?.srcdoc = HtmlUtils.preprocessSource(
+    iframe.srcdoc = HtmlUtils.preprocessSource(
       replacedPageSource,
       jsContent: widget.jsContent,
       windowDisambiguator: iframeViewType,
@@ -550,10 +549,6 @@ class _WebViewXState extends State<WebViewX> {
     webViewXController.removeIgnoreGesturesListener(
       _handleIgnoreGesturesChange,
     );
-    js.context.deleteProperty('$jsToDartConnectorFN$iframeViewType');
-    jsWindowObject = webViewXController.connector = js.JsObject.jsify({});
-    iframe?.remove();
-    iframe = null;
     super.dispose();
   }
 }
