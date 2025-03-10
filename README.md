@@ -1,8 +1,10 @@
-﻿
+
 <p align="center">
 <img src="https://raw.githubusercontent.com/Mahad61/webviewx_plus/main/doc/images/webviewx_plus.png" height="400" alt="webviewx" />
 </p>
 
+
+Made with ❤️ by [Cross Sonic](https://crosssonic.com/) 
 
 
 A feature-rich cross-platform webview using [webview_flutter](https://pub.dev/packages/webview_flutter) for mobile and [iframe](https://api.flutter.dev/flutter/dart-html/IFrameElement-class.html) for web. JS interop-ready.
@@ -178,8 +180,14 @@ Any help from the open-source community is always welcome and needed:
     
     -   **Many thanks from me, the contributors and everybody that uses this project!**
 
- 
+## Support & Development Services
 
-## Credits
+This plugin is maintained by [Cross Sonic](https://crosssonic.com/), a software solutions company specializing in Flutter, .NET, AI, and cloud-based applications.
 
-This package has updated the    [webviewx](https://github.com/adrianflutur/webviewx)  code and fixed a few issues as it isn't  remain updated.
+## Need Custom Development?
+
+If you need custom development, feature enhancements, or professional support, Cross Sonic provides dedicated development services tailored to your needs. Reach out to us at contact@crosssonic.com.
+
+## License
+
+This project is licensed under the MIT License.
