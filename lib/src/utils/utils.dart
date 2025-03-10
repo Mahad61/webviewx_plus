@@ -1,5 +1,5 @@
 export 'css_loader.dart';
-export 'dart_callback.dart';
+export 'dart_callback/dart_callback.dart';
 export 'embedded_js_content.dart';
 export 'html_utils.dart';
 export 'mobile_specific_params.dart';

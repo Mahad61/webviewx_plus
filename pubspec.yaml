@@ -2,7 +2,7 @@ name: webviewx_plus
 description: A cross-platform webview using webview_flutter for
   mobile and iFrame for web.
 repository: https://github.com/Mahad61/webviewx_plus
-version: 0.5.0
+version: 0.6.0
 
 platforms:
   android:
@@ -11,8 +11,8 @@ platforms:
 
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: ">=3.22.0"
 
 dependencies:
   flutter:
@@ -21,10 +21,11 @@ dependencies:
   path: ^1.8.0
   pointer_interceptor: ^0.10.0
   uuid: ^4.2.2
-  webview_flutter: ^4.4.2
-  webview_flutter_android: ^3.13.1
-  webview_flutter_platform_interface: ^2.9.0
-  webview_flutter_wkwebview: ^3.10.0
+  webview_flutter: ^4.7.0
+  webview_flutter_android: ^3.16.1
+  webview_flutter_platform_interface: ^2.10.0
+  webview_flutter_wkwebview: ^3.13.1
+  web: ^0.5.1
 
 dev_dependencies:
   flutter_test:

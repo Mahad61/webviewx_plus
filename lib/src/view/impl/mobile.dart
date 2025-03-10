@@ -293,7 +293,9 @@ class _WebViewXState extends State<WebViewX> {
     for (final cb in widget.dartCallBacks) {
       originalWebViewController.addJavaScriptChannel(
         cb.name,
-        onMessageReceived: (msg) => cb.callBack(msg.message),
+        onMessageReceived: (msg) => cb.callBack(
+          msg.message,
+        ),
       );
     }
 

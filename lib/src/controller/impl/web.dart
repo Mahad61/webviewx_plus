@@ -1,6 +1,6 @@
 import 'dart:async' show Future;
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
+import 'dart:js_interop' as js;
+import 'dart:js_interop_unsafe';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -11,10 +11,10 @@ import 'package:webviewx_plus/src/utils/web_history.dart';
 
 /// Web implementation
 class WebViewXController extends ChangeNotifier
-    implements i.WebViewXController<js.JsObject> {
-  /// JsObject connector
+    implements i.WebViewXController<js.JSObject> {
+  /// JSObject connector
   @override
-  late js.JsObject connector;
+  late js.JSObject connector;
 
   // Boolean value notifier used to toggle ignoring gestures on the webview
   final ValueNotifier<bool> _ignoreAllGesturesNotifier;
@@ -128,7 +128,7 @@ class WebViewXController extends ChangeNotifier
     String name,
     List<dynamic> params,
   ) {
-    final result = connector.callMethod(name, params);
+    final result = connector.callMethod(name.toJS, params.toJSBox);
     return Future<dynamic>.value(result);
   }
 
@@ -144,9 +144,9 @@ class WebViewXController extends ChangeNotifier
     String rawJavascript, {
     bool inGlobalContext = false,
   }) {
-    final result = (inGlobalContext ? js.context : connector).callMethod(
-      'eval',
-      [rawJavascript],
+    final result = (inGlobalContext ? js.globalContext : connector).callMethod(
+      'eval'.toJS,
+      [rawJavascript].toJSBox,
     );
     return Future<dynamic>.value(result);
   }
@@ -198,10 +198,12 @@ class WebViewXController extends ChangeNotifier
   /// Get scroll position
   @override
   Future<Offset> getScrollPosition() {
-    return Future.value(Offset(
-      double.tryParse(connector["scrollX"].toString()) ?? 0,
-      double.tryParse(connector["scrollY"].toString()) ?? 0,
-    ));
+    return Future.value(
+      Offset(
+        double.tryParse(connector["scrollX"].toString()) ?? 0,
+        double.tryParse(connector["scrollY"].toString()) ?? 0,
+      ),
+    );
   }
 
   /// Get scroll position on X axis
@@ -231,13 +233,23 @@ class WebViewXController extends ChangeNotifier
   /// Retrieves the inner page title
   @override
   Future<String?> getTitle() {
-    return Future.value(connector["document"]["title"].toString());
+    final document = connector['document'];
+    if (document == null) {
+      return Future.value();
+    }
+
+    final title = (document as js.JSObject)['title'];
+
+    return Future.value(title?.toString());
   }
 
   /// Clears cache
   @override
   Future<void> clearCache() {
-    connector["localStorage"].callMethod("clear", []);
+    (connector["localStorage"] as js.JSObject?)?.callMethod(
+      "clear".toJS,
+      [].toJSBox,
+    );
     evalRawJavascript(
       'caches.keys().then((keyList) => Promise.all(keyList.map((key) => caches.delete(key))))',
     );

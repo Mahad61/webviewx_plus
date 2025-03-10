@@ -33,14 +33,14 @@
 /// ```
 /// For more about the Web and Mobile different call types see [EmbeddedJsContent]
 ///
-class DartCallback {
+class DartCallback<T> {
   /// Callback's name
   ///
   /// Note: Must be UNIQUE
   final String name;
 
   /// Callback function
-  final Function(dynamic message) callBack;
+  final void Function(T message) callBack;
 
   /// Constructor
   const DartCallback({
